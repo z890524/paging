@@ -1,0 +1,19 @@
+[
+{
+"model": "iPhone 8",
+"type": "iPhone",
+"price": "7000"
+},{
+"model": "iPhone 7",
+"type": "iPhone",
+"price": "6500"
+},{
+"model": "s8",
+"type": "三星",
+"price": "6600"
+},{
+"model": "小米2",
+"type": "小米",
+"price": "3000"
+}
+]

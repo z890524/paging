@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo</title>
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+	<div id='div1'>
+		<ul id="ul"></ul>
+	</div>
+	<input type="button" id="btn1" value='使用名单数据1'>
+	<input type="button" id="btn2" value='使用名单数据2'>
+	<div id='div2'>
+		<table id="table"></table>
+	</div>
+	<script src="paging.js"></script>
+	<script>
+		var getId = document.getElementById.bind(document)
+		var data = []
+		var ulPaging = Paging(data, getId('ul'), getId('div1'))
+
+		get('./json/json1.json', function(data){
+			ulPaging.update(data).setHeader('同学名单').setTemplate(function(v){
+				return '<li>姓名'+v.name + '年龄' + v.age + '性别' + v.gender + '</li>'
+			})
+		})
+
+		get('./json/json3.json', function(data){
+			var tablePaging = Paging(data,getId('table'),getId('div2'))
+			tablePaging.setHeader('<tr><th>品名</th><th>品牌</th><th>价格</th></tr>').setTemplate(function(v){
+				return '<tr><td>'+v.model + '</td><td>' + v.type + '</td><td>' + v.price + '</td></tr>'
+			})
+		})
+
+		getId('btn1').onclick = function(){
+			get('./json/json1.json', function(data){
+				ulPaging.update(data)
+			})
+		}
+		getId('btn2').onclick = function(){
+			get('./json/json2.json', function(data){
+				ulPaging.update(data)
+			})
+		}
+
+		function get(url, callback){
+	    var xhr = new XMLHttpRequest()
+  		xhr.open('GET', url, true)
+  		xhr.send()
+  		xhr.onreadystatechange = function () {
+		    if (xhr.readyState === 4 && xhr.status === 200) {
+		      var data = JSON.parse(xhr.responseText)
+		      callback && callback(data)
+		    }
+		  }
+		}
+	</script>
+</body>
+</html>

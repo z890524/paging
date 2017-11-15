@@ -1,0 +1,68 @@
+.paging-pagination {
+  margin: 10px auto 10px;
+  border-bottom: none;
+  list-style: none;
+}
+.paging-pagination::before,
+.paging-pagination::after{
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+}
+
+.paging-pagination .paging-pagenum {
+  float: left;
+  margin-left: 20px;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.5em;
+  text-align: center;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  position: relative;
+}
+
+.paging-pagination .paging-pagenum.current {
+  color: #fff;
+  background-color: #0aafb3;
+}
+
+.paging-pagination .paging-arrow::before,
+.paging-pagination .paging-arrow::after{
+  content: '';
+  display: block;
+  width: .6em;
+  height: .6em;
+  border-left: 2px solid  #000;
+  border-top: 2px solid  #000;
+  transform: translateY(-50%) rotate(135deg);
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  box-sizing: border-box;
+}
+
+.paging-pagination .paging-arrow:first-child::before{
+  left: 25%;
+  transform: translateY(-50%) rotate(-45deg);
+}
+.paging-pagination .paging-arrow:first-child::after{
+  left: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.paging-pagination .paging-arrow:first-child+::before,
+.paging-pagination .paging-arrow:first-child+::after{
+  transform: translate( calc(-50% + .4em) ,-50%) rotate(-45deg);
+}
+.paging-pagination .paging-arrow:last-child::before{
+  transform: translateY(-50%) rotate(135deg);
+  left: 10%;
+}
+.paging-pagination .paging-arrow:last-child::after{
+  transform: translateY(-50%) rotate(135deg);
+  left: 35%;
+}
