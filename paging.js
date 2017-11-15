@@ -156,8 +156,14 @@ Paging.prototype =  {
     this.isEmpty || this.showPage(1)
     return this
   },
-  setHeader: function (str) {
-    this.header = str
+  setHeader: function (cb) {
+    var type = typeof cb
+    if (type === 'string') {
+      this.header = cb
+    } else if (type === 'function') {
+      var str = cb()
+      typeof str === 'string' && (this.header = str)
+    }
     return this
   },
   setEvent: function (event, el, cb) {
